@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Assignment1</string>
+    <string name="compareTxt">Please select the bigger number:</string>
+    <string name="homePlay">Play Games</string>
+    <string name="homeQuit">Quit</string>
+    <string name="homeText">Math Games</string>
+    <string name="compNum1">4</string>
+    <string name="compNum2">7</string>
+    <string name="compSubmit">Next</string>
+    <string name="compLvl">Level</string>
+</resources>
