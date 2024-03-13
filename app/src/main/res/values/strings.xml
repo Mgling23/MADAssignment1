@@ -6,6 +6,6 @@
     <string name="homeText">Math Games</string>
     <string name="compNum1">4</string>
     <string name="compNum2">7</string>
-    <string name="compSubmit">Next</string>
+    <string name="compSubmit">Submit</string>
     <string name="compLvl">Level</string>
 </resources>
