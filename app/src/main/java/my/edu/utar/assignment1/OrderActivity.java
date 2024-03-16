@@ -140,6 +140,7 @@ public class OrderActivity extends AppCompatActivity {
         }
 
         num1.setText(String.valueOf(number1));
+
         num2.setText(String.valueOf(number2));
         num3.setText(String.valueOf(number2));
 
