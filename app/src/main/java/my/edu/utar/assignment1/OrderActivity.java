@@ -7,6 +7,7 @@ import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.view.DragEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -42,22 +43,40 @@ public class OrderActivity extends AppCompatActivity {
 
 
 
-        num1.setOnLongClickListener(longClickListener);
-        num2.setOnLongClickListener(longClickListener);
+        num1.setOnTouchListener(touchListener);
+        num2.setOnTouchListener(touchListener);
+        num3.setOnTouchListener(touchListener);
 
-        num3.setOnLongClickListener(longClickListener);
+
+//        num1.setOnLongClickListener(longClickListener);
+//        num2.setOnLongClickListener(longClickListener);
+//
+//        num3.setOnLongClickListener(longClickListener);
+        ans1.setOnDragListener(dragListener);
 
     }
 
-    View.OnLongClickListener longClickListener = new View.OnLongClickListener() {
+    View.OnTouchListener touchListener = new View.OnTouchListener() {
         @Override
-        public boolean onLongClick(View v) {
-            ClipData data = ClipData.newPlainText("", "");
-            View.DragShadowBuilder myShadowBuilder = new View.DragShadowBuilder();
-            v.startDrag(data, myShadowBuilder, v, 0);
-            return true;
+        public boolean onTouch(View v, MotionEvent event) {
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                ClipData data = ClipData.newPlainText("", "");
+                View.DragShadowBuilder myShadowBuilder = new View.DragShadowBuilder(v);
+                v.startDrag(data, myShadowBuilder, v, 0);
+                return true;
+            }
+            return false;
         }
     };
+//    View.OnLongClickListener longClickListener = new View.OnLongClickListener() {
+//        @Override
+//        public boolean onLongClick(View v) {
+//            ClipData data = ClipData.newPlainText("", "");
+//            View.DragShadowBuilder myShadowBuilder = new View.DragShadowBuilder(v);
+//            v.startDrag(data, myShadowBuilder, v, 0);
+//            return true;
+//        }
+//    };
 
     View.OnDragListener dragListener = new View.OnDragListener() {
         @Override
@@ -66,16 +85,35 @@ public class OrderActivity extends AppCompatActivity {
             int dragEvent = event.getAction();
             switch (dragEvent) {
                 case DragEvent.ACTION_DRAG_ENTERED:
+                    v.setBackground(getDrawable(R.drawable.stars));
                     final View view = (View) event.getLocalState();
 
-                    if (view.getId() == R.id.o_ans1) {
+                    if (view.getId() == R.id.o_num1) {
                         ans1.setText("Num1 is being dragged");
+                    }
+                    else if (view.getId() == R.id.o_num2){
+                        ans1.setText("Num2 is being dragged");
+                    } else if (view.getId() == R.id.o_num3){
+                        ans1.setText("Num3 is being dragged");
                     }
 
                     break;
                 case DragEvent.ACTION_DRAG_EXITED:
+                    v.setBackground(getDrawable(R.drawable.text_bg));
+                    TextView tv = findViewById( v.getId());
+                    tv.setText("");
                     break;
                 case DragEvent.ACTION_DROP:
+                    final View view1 = (View) event.getLocalState();
+
+                    if (view1.getId() == R.id.o_num1) {
+                        ans1.setText("Num1 is being dragged");
+                    }
+                    else if (view1.getId() == R.id.o_num2){
+                        ans1.setText("Num2 is being dragged");
+                    } else if (view1.getId() == R.id.o_num3){
+                        ans1.setText("Num3 is being dragged");
+                    }
                     break;
             }
             return true;

@@ -22,44 +22,46 @@
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_marginTop="88dp"
-            android:text=""
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/o_num3"
-            app:layout_constraintHorizontal_bias="0.331"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/o_num2"
-            app:layout_constraintVertical_bias="0.0"
             android:background="@drawable/order_num"
             android:gravity="center"
-            android:textAlignment="center"/>
+            android:text=""
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/o_num3"
+            app:layout_constraintHorizontal_bias="0.343"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/o_num2"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/o_num2"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_marginEnd="176dp"
+            android:layout_marginEnd="152dp"
+            android:background="@drawable/order_num"
+            android:gravity="center"
             android:text="TextView"
+            android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.283"
-            android:background="@drawable/order_num"
-            android:gravity="center"
-            android:textAlignment="center"/>
+            app:layout_constraintVertical_bias="0.169" />
 
         <TextView
             android:id="@+id/o_num3"
             android:layout_width="70dp"
             android:layout_height="70dp"
+            android:alpha="0.9"
+            android:background="@drawable/order_num"
+            android:gravity="center"
             android:text="TextView"
+            android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.772"
             app:layout_constraintStart_toStartOf="@+id/o_num2"
             app:layout_constraintTop_toBottomOf="@+id/o_num2"
-            android:background="@drawable/order_num"
-            android:alpha="0.9"
-            android:gravity="center"
-            android:textAlignment="center"/>
+            app:layout_constraintVertical_bias="0.531" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
@@ -69,9 +71,8 @@
 
         <TextView
             android:id="@+id/o_ans1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:gravity="center"
             android:text="TextView"
             android:textAlignment="center"
@@ -79,15 +80,15 @@
 
         <TextView
             android:id="@+id/o_ans2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:layout_weight="1"
             android:text="TextView" />
 
         <TextView
             android:id="@+id/o_ans3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:layout_weight="1"
             android:text="TextView" />
     </LinearLayout>
