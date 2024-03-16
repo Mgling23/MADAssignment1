@@ -15,9 +15,12 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Random;
+
 public class OrderActivity extends AppCompatActivity {
 
     TextView num1, num2, num3, ans1, ans2, ans3;
+    private int number1,number2,number3;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,8 +56,13 @@ public class OrderActivity extends AppCompatActivity {
 //
 //        num3.setOnLongClickListener(longClickListener);
         ans1.setOnDragListener(dragListener);
+        ans2.setOnDragListener(dragListener);
+        ans3.setOnDragListener(dragListener);
 
+        generateNumbers();
     }
+
+
 
     View.OnTouchListener touchListener = new View.OnTouchListener() {
         @Override
@@ -82,6 +90,7 @@ public class OrderActivity extends AppCompatActivity {
         @Override
         public boolean onDrag(View v, DragEvent event) {
 
+            TextView tv = findViewById( v.getId());
             int dragEvent = event.getAction();
             switch (dragEvent) {
                 case DragEvent.ACTION_DRAG_ENTERED:
@@ -89,36 +98,51 @@ public class OrderActivity extends AppCompatActivity {
                     final View view = (View) event.getLocalState();
 
                     if (view.getId() == R.id.o_num1) {
-                        ans1.setText("Num1 is being dragged");
+                        tv.setText("Num1 is being dragged");
                     }
                     else if (view.getId() == R.id.o_num2){
-                        ans1.setText("Num2 is being dragged");
+                        tv.setText("Num2 is being dragged");
                     } else if (view.getId() == R.id.o_num3){
-                        ans1.setText("Num3 is being dragged");
+                        tv.setText("Num3 is being dragged");
                     }
 
                     break;
                 case DragEvent.ACTION_DRAG_EXITED:
                     v.setBackground(getDrawable(R.drawable.text_bg));
-                    TextView tv = findViewById( v.getId());
+
                     tv.setText("");
                     break;
                 case DragEvent.ACTION_DROP:
                     final View view1 = (View) event.getLocalState();
 
                     if (view1.getId() == R.id.o_num1) {
-                        ans1.setText("Num1 is being dragged");
+                        tv.setText("Num1");
+
                     }
                     else if (view1.getId() == R.id.o_num2){
-                        ans1.setText("Num2 is being dragged");
+                        tv.setText("Num2");
                     } else if (view1.getId() == R.id.o_num3){
-                        ans1.setText("Num3 is being dragged");
+                        tv.setText("Num3");
                     }
                     break;
             }
             return true;
         }
     };
+    private void generateNumbers() {
+        Random random = new Random();
+        number1 = random.nextInt(10) + 1;
+        number2 = random.nextInt(10) + 1;
+        number3 = random.nextInt(10) + 1;
 
+        while (number2 == number1) {
+            number2 = random.nextInt(10) + 1;
+        }
+
+        num1.setText(String.valueOf(number1));
+        num2.setText(String.valueOf(number2));
+        num3.setText(String.valueOf(number2));
+
+    }
 
 }

@@ -22,7 +22,7 @@ public class CompareActivity extends AppCompatActivity {
     private TextView compareText;
     private Button compNumOne, compNumTwo, compSubmitBtn, nextBtn;
     private ImageView greatJobImage, wrongAnswerImage;
-    private int number1, number2, ans;
+    private int number1, number2, ans,maxGame = 10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
