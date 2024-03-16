@@ -23,6 +23,7 @@
         </activity>
         <activity android:name=".ChooseGames" />
         <activity android:name=".CompareActivity"/>
+        <activity android:name=".OrderActivity"/>
 
     </application>
 

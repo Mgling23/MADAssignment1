@@ -3,10 +3,14 @@ package my.edu.utar.assignment1;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -17,23 +21,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button button = findViewById(R.id.homePlayBtn);
-        Button button1 = findViewById(R.id.homeQuitBt);
+        LinearLayout orderLinearLayout = findViewById(R.id.main_ll);
 
-        // Create a GradientDrawable
-        GradientDrawable gradientDrawable = new GradientDrawable(
-                GradientDrawable.Orientation.LEFT_RIGHT, // Gradient orientation
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inSampleSize = 2;
+        Bitmap bg_pic = BitmapFactory.decodeResource(getResources(), R.drawable.all_bg2,options);
 
-                new int[]{getResources().getColor(R.color.startColor), getResources().getColor(R.color.endColor)} // Gradient colors
-        );
-
-        gradientDrawable.setCornerRadius(getResources().getDimension(R.dimen.button_corner_radius));
-
-        // Set the gradient drawable as the background tint
-        button.setBackgroundTintList(null); // To remove any existing tint
-        button.setBackground(gradientDrawable);
-        button1.setBackgroundTintList(null); // To remove any existing tint
-        button1.setBackground(gradientDrawable);
+        BitmapDrawable bitmapDrawable = new BitmapDrawable(getResources(),bg_pic);
+        orderLinearLayout.setBackground(bitmapDrawable);
 
         buttonListener = new View.OnClickListener() {
             @Override

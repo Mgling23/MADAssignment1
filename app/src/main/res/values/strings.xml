@@ -8,4 +8,7 @@
     <string name="compNum2">7</string>
     <string name="compSubmit">Submit</string>
     <string name="compLvl">Level</string>
+    <string name="game1">Compare Number</string>
+    <string name="game2">Number Order</string>
+    <string name="game3">Composing Number</string>
 </resources>

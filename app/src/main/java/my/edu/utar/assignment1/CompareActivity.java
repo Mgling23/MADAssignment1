@@ -2,6 +2,7 @@ package my.edu.utar.assignment1;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,6 +28,15 @@ public class CompareActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_compare);
+
+        LinearLayout compareLinearLayout = findViewById(R.id.compare_ll);
+
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inSampleSize = 2;
+        Bitmap bg_pic = BitmapFactory.decodeResource(getResources(),R.drawable.all_bg,options);
+
+        BitmapDrawable bitmapDrawable = new BitmapDrawable(getResources(),bg_pic);
+        compareLinearLayout.setBackground(bitmapDrawable);
 
         compareText = findViewById(R.id.caompareText);
         compNumOne = findViewById(R.id.conpNumOne);
@@ -166,7 +177,7 @@ public class CompareActivity extends AppCompatActivity {
         ScaleAnimation scaleAnimation = new ScaleAnimation(0.0f, 1.0f, 0.0f, 1.0f,
                 Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
         scaleAnimation.setDuration(1000); // Animation duration in milliseconds
-        scaleAnimation.setFillAfter(true);
+        //scaleAnimation.setFillAfter(true);
 
         iv.startAnimation(scaleAnimation);
         //iv.setVisibility(View.GONE);
