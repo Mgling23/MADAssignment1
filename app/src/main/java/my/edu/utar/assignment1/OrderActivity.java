@@ -23,11 +23,13 @@ import java.util.Set;
 
 public class OrderActivity extends AppCompatActivity {
 
-    TextView num1, num2, num3, ans1, ans2, ans3;
+    TextView num1, num2, num3, ans1, ans2, ans3, levelText, questionText;
     TextView[] ans = new TextView[3];
-    private int number1,number2,number3;
-    LinearLayout q_ll,a_ll,c_ll;
+    private int number1, number2, number3;
+    LinearLayout q_ll, a_ll, c_ll;
+    int level = 1;
     Button nextBtn;
+    Boolean isAscending;
 
 
     @Override
@@ -38,6 +40,8 @@ public class OrderActivity extends AppCompatActivity {
         a_ll = findViewById(R.id.order_answer_ll);
         q_ll = findViewById(R.id.order_question_ll);
 
+        questionText = findViewById(R.id.order_question);
+        levelText = findViewById(R.id.order_level);
         nextBtn = findViewById(R.id.order_nextBtn);
         num1 = (TextView) findViewById(R.id.o_num1);
         num2 = (TextView) findViewById(R.id.o_num2);
@@ -55,9 +59,9 @@ public class OrderActivity extends AppCompatActivity {
 
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inSampleSize = 2;
-        Bitmap bg_pic = BitmapFactory.decodeResource(getResources(),R.drawable.allbg4,options);
+        Bitmap bg_pic = BitmapFactory.decodeResource(getResources(), R.drawable.allbg4, options);
 
-        BitmapDrawable bitmapDrawable = new BitmapDrawable(getResources(),bg_pic);
+        BitmapDrawable bitmapDrawable = new BitmapDrawable(getResources(), bg_pic);
         orderLinearLayout.setBackground(bitmapDrawable);
 
 
@@ -76,6 +80,7 @@ public class OrderActivity extends AppCompatActivity {
         ans2.setOnDragListener(dragListener);
         ans3.setOnDragListener(dragListener);
 
+        levelText.setText("Level " + level);
         generateNumbers();
     }
 
@@ -115,7 +120,7 @@ public class OrderActivity extends AppCompatActivity {
         @Override
         public boolean onDrag(View v, DragEvent event) {
 
-            TextView tv = findViewById( v.getId());
+            TextView tv = findViewById(v.getId());
             int dragEvent = event.getAction();
             switch (dragEvent) {
                 case DragEvent.ACTION_DRAG_ENTERED:
@@ -145,10 +150,9 @@ public class OrderActivity extends AppCompatActivity {
 
                         tv.setText(num1.getText());
 
-                    }
-                    else if (view1.getId() == R.id.o_num2){
+                    } else if (view1.getId() == R.id.o_num2) {
                         tv.setText(num2.getText());
-                    } else if (view1.getId() == R.id.o_num3){
+                    } else if (view1.getId() == R.id.o_num3) {
                         tv.setText(num3.getText());
                     }
                     checkAnswer();
@@ -160,11 +164,13 @@ public class OrderActivity extends AppCompatActivity {
 
 
     private void generateNumbers() {
+        level++;
         Random random = new Random();
+        int ad = random.nextInt(10)+1;
         Set<Integer> numbers = new HashSet<>();
 
         while (numbers.size() < 3) {
-            numbers.add(random.nextInt(10) + 1);
+            numbers.add(random.nextInt(20) + 1);
         }
 
         Iterator<Integer> iterator = numbers.iterator();
@@ -176,35 +182,47 @@ public class OrderActivity extends AppCompatActivity {
         num2.setText(String.valueOf(number2));
         num3.setText(String.valueOf(number3));
 
+        levelText.setText("Level " + level);
+        if(ad%2==0){
+            isAscending = true;
+            questionText.setText("Arrange them in ascending order:");
+        }
+        else{
+            isAscending = false;
+            questionText.setText("Arrange them in descending order:");
+        }
     }
 
-    private void clearAnswer(){
-        for(int i=0;i<3;i++){
+    private void clearAnswer() {
+        for (int i = 0; i < 3; i++) {
             ans[i].setBackground(getDrawable(R.drawable.order_answer));
             ans[i].setText("");
         }
         //ans1.setBackground(getDrawable(R.drawable.order_answer));
 
     }
-    private void checkAnswer(){
+
+    private void checkAnswer() {
         try {
             int answer1 = Integer.parseInt(ans1.getText().toString());
             int answer2 = Integer.parseInt(ans2.getText().toString());
             int answer3 = Integer.parseInt(ans3.getText().toString());
 
-            if (answer1 < answer2 && answer2 < answer3) {
-                // Correct answer logic
-
-                q_ll.setVisibility(View.GONE);
-                a_ll.setVisibility(View.VISIBLE);
-            } else {
-                // Incorrect answer logic
+            if(isAscending){
+                if (answer1 < answer2 && answer2 < answer3) {
+                    q_ll.setVisibility(View.GONE);
+                    a_ll.setVisibility(View.VISIBLE);
+                }
             }
+            else{
+                if (answer1 > answer2 && answer2 > answer3) {
+                    q_ll.setVisibility(View.GONE);
+                    a_ll.setVisibility(View.VISIBLE);
+                }
+            }
+
         } catch (NumberFormatException e) {
-            // Handle the case where the text cannot be parsed to an integer
-            // For example, if the TextViews contain non-integer values
-            // or if they are empty
-            // You may display an error message or take appropriate action
+
         }
     }
 }
