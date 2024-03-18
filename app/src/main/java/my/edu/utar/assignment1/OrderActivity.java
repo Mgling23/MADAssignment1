@@ -15,12 +15,16 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Random;
+import java.util.Set;
 
 public class OrderActivity extends AppCompatActivity {
 
     TextView num1, num2, num3, ans1, ans2, ans3;
     private int number1,number2,number3;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,7 +43,7 @@ public class OrderActivity extends AppCompatActivity {
 
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inSampleSize = 2;
-        Bitmap bg_pic = BitmapFactory.decodeResource(getResources(),R.drawable.all_bg2,options);
+        Bitmap bg_pic = BitmapFactory.decodeResource(getResources(),R.drawable.allbg4,options);
 
         BitmapDrawable bitmapDrawable = new BitmapDrawable(getResources(),bg_pic);
         orderLinearLayout.setBackground(bitmapDrawable);
@@ -97,18 +101,18 @@ public class OrderActivity extends AppCompatActivity {
                     v.setBackground(getDrawable(R.drawable.stars));
                     final View view = (View) event.getLocalState();
 
-                    if (view.getId() == R.id.o_num1) {
-                        tv.setText("Num1 is being dragged");
-                    }
-                    else if (view.getId() == R.id.o_num2){
-                        tv.setText("Num2 is being dragged");
-                    } else if (view.getId() == R.id.o_num3){
-                        tv.setText("Num3 is being dragged");
-                    }
+//                    if (view.getId() == R.id.o_num1) {
+//                        tv.setText("Num1 is being dragged");
+//                    }
+//                    else if (view.getId() == R.id.o_num2){
+//                        tv.setText("Num2 is being dragged");
+//                    } else if (view.getId() == R.id.o_num3){
+//                        tv.setText("Num3 is being dragged");
+//                    }
 
                     break;
                 case DragEvent.ACTION_DRAG_EXITED:
-                    v.setBackground(getDrawable(R.drawable.text_bg));
+                    v.setBackground(getDrawable(R.drawable.order_answer));
 
                     tv.setText("");
                     break;
@@ -116,14 +120,17 @@ public class OrderActivity extends AppCompatActivity {
                     final View view1 = (View) event.getLocalState();
 
                     if (view1.getId() == R.id.o_num1) {
-                        tv.setText("Num1");
+
+
+                        tv.setText(num1.getText());
 
                     }
                     else if (view1.getId() == R.id.o_num2){
-                        tv.setText("Num2");
+                        tv.setText(num2.getText());
                     } else if (view1.getId() == R.id.o_num3){
-                        tv.setText("Num3");
+                        tv.setText(num3.getText());
                     }
+                    checkAnswer();
                     break;
             }
             return true;
@@ -131,19 +138,39 @@ public class OrderActivity extends AppCompatActivity {
     };
     private void generateNumbers() {
         Random random = new Random();
-        number1 = random.nextInt(10) + 1;
-        number2 = random.nextInt(10) + 1;
-        number3 = random.nextInt(10) + 1;
+        Set<Integer> numbers = new HashSet<>();
 
-        while (number2 == number1) {
-            number2 = random.nextInt(10) + 1;
+        while (numbers.size() < 3) {
+            numbers.add(random.nextInt(10) + 1);
         }
 
-        num1.setText(String.valueOf(number1));
+        Iterator<Integer> iterator = numbers.iterator();
+        number1 = iterator.next();
+        number2 = iterator.next();
+        number3 = iterator.next();
 
+        num1.setText(String.valueOf(number1));
         num2.setText(String.valueOf(number2));
-        num3.setText(String.valueOf(number2));
+        num3.setText(String.valueOf(number3));
 
     }
 
+    private void checkAnswer(){
+        try {
+            int answer1 = Integer.parseInt(ans1.getText().toString());
+            int answer2 = Integer.parseInt(ans2.getText().toString());
+            int answer3 = Integer.parseInt(ans3.getText().toString());
+
+            if (answer1 < answer2 && answer2 < answer3) {
+                // Correct answer logic
+            } else {
+                // Incorrect answer logic
+            }
+        } catch (NumberFormatException e) {
+            // Handle the case where the text cannot be parsed to an integer
+            // For example, if the TextViews contain non-integer values
+            // or if they are empty
+            // You may display an error message or take appropriate action
+        }
+    }
 }

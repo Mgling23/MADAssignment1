@@ -11,10 +11,13 @@
     <TextView
         android:id="@+id/textView2"
         android:layout_width="411dp"
-        android:layout_height="238dp"
-        android:text="TextView"
+        android:layout_height="221dp"
         android:fontFamily="@font/amazingkids"
-        />
+        android:gravity="center|bottom"
+        android:layout_marginBottom="20dp"
+        android:text="Choose Game"
+        android:textSize="50dp"
+        android:textColor="#C6FFD5"/>
 
     <Button
         android:id="@+id/choCompareBtn"

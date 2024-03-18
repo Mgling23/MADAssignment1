@@ -1,5 +1,6 @@
 package my.edu.utar.assignment1;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -13,16 +14,18 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.ContentView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Random;
 
 public class CompareActivity extends AppCompatActivity {
 
-    private TextView compareText;
+    private TextView compareText,compareLevel;
     private Button compNumOne, compNumTwo, compSubmitBtn, nextBtn;
     private ImageView greatJobImage, wrongAnswerImage;
-    private int number1, number2, ans,maxGame = 10;
+    private int number1, number2, ans,maxGame = 1;
+    private boolean isBigger;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,14 +33,17 @@ public class CompareActivity extends AppCompatActivity {
         setContentView(R.layout.activity_compare);
 
         LinearLayout compareLinearLayout = findViewById(R.id.compare_ll);
+        setBackground_ll(compareLinearLayout);
 
-        BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inSampleSize = 2;
-        Bitmap bg_pic = BitmapFactory.decodeResource(getResources(),R.drawable.all_bg,options);
+//        BitmapFactory.Options options = new BitmapFactory.Options();
+//        options.inSampleSize = 2;
+//        Bitmap bg_pic = BitmapFactory.decodeResource(getResources(),R.drawable.all_bg,options);
+//
+//        BitmapDrawable bitmapDrawable = new BitmapDrawable(getResources(),bg_pic);
+//        compareLinearLayout.setBackground(bitmapDrawable);
+        //completeLinearLayout.setBackground(bitmapDrawable);
 
-        BitmapDrawable bitmapDrawable = new BitmapDrawable(getResources(),bg_pic);
-        compareLinearLayout.setBackground(bitmapDrawable);
-
+        compareLevel = findViewById(R.id.cmpLevelTxt);
         compareText = findViewById(R.id.caompareText);
         compNumOne = findViewById(R.id.conpNumOne);
         compNumTwo = findViewById(R.id.compNumTwo);
@@ -51,6 +57,7 @@ public class CompareActivity extends AppCompatActivity {
         nextBtn.setVisibility(View.GONE);
         //nextBtn.setBackground(getDrawable(R.drawable.button_border));
 
+        compareLevel.setText("Level 1");
         generateNumbers();
 
         compNumOne.setOnClickListener(new View.OnClickListener() {
@@ -103,6 +110,10 @@ public class CompareActivity extends AppCompatActivity {
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                maxGame++;
+                if (maxGame==10){
+
+                }
                 // Hide result image and next button
                 greatJobImage.setVisibility(View.GONE);
                 wrongAnswerImage.setVisibility(View.GONE);
@@ -115,7 +126,11 @@ public class CompareActivity extends AppCompatActivity {
                 compNumOne.setVisibility(View.VISIBLE);
                 compNumTwo.setVisibility(View.VISIBLE);
                 compSubmitBtn.setVisibility(View.VISIBLE);
+
+                compareLevel.setText("Level "+maxGame);
+
             }
+
         });
 
         // Handle touch event to hide result image
@@ -129,10 +144,20 @@ public class CompareActivity extends AppCompatActivity {
         });
     }
 
+    public void setBackground_ll(LinearLayout ll){
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inSampleSize = 2;
+        Bitmap bg_pic = BitmapFactory.decodeResource(getResources(),R.drawable.all_bg,options);
+
+        BitmapDrawable bitmapDrawable = new BitmapDrawable(getResources(),bg_pic);
+        ll.setBackground(bitmapDrawable);
+    }
     private void generateNumbers() {
         Random random = new Random();
+        int quest = random.nextInt(10) + 1;
         number1 = random.nextInt(10) + 1;
         number2 = random.nextInt(10) + 1;
+
 
         while (number2 == number1) {
             number2 = random.nextInt(10) + 1;
@@ -140,6 +165,14 @@ public class CompareActivity extends AppCompatActivity {
 
         compNumOne.setText(String.valueOf(number1));
         compNumTwo.setText(String.valueOf(number2));
+        if(quest%2==0){
+            compareText.setText("Please choose the bigger number");
+            isBigger = true;
+        }
+        else{
+            compareText.setText("Please choose the smaller number");
+            isBigger = false;
+        }
         compareText.setText("Please choose the bigger number");
     }
 

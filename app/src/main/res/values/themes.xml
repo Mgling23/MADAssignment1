@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.Assignment1" parent="Theme.AppCompat.DayNight.NoActionBar">
+    <style name="Base.Theme.Assignment1" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your light theme here. -->
         <item name="colorButtonNormal">@color/btn_origin</item>
         <item name="buttonBarStyle">@color/btn_selected</item>
