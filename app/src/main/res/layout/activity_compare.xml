@@ -7,7 +7,13 @@
     android:gravity="center|top"
     android:orientation="vertical"
     tools:context=".CompareActivity">
-
+    <LinearLayout
+        android:id="@+id/compare_question_ll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center|top"
+        >
     <TextView
         android:id="@+id/cmpLevelTxt"
         android:layout_width="match_parent"
@@ -75,13 +81,28 @@
 
 
     </LinearLayout>
+        <Button
+            android:id="@+id/compSubmitBtn"
+            android:layout_width="144dp"
+            android:layout_height="64dp"
+            android:background="@drawable/button_border"
+            android:fontFamily="@font/handkide"
+            android:text="@string/compSubmit" />
+    </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/compare_answer_ll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        >
     <ImageView
         android:id="@+id/greatJobImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/greatjob"
-        android:visibility="gone" />
+         />
 
 
 
@@ -90,7 +111,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/wrong_answer"
-        android:visibility="gone" />
+        android:visibility="gone"
+         />
 
     <Button
         android:id="@+id/nextBtn"
@@ -99,39 +121,39 @@
         android:layout_marginHorizontal="20dp"
         android:background="@drawable/button_border"
         android:text="Next"
-        android:visibility="gone" />
+        />
 
-    <Button
-        android:id="@+id/compSubmitBtn"
-        android:layout_width="144dp"
-        android:layout_height="64dp"
-        android:background="@drawable/button_border"
-        android:fontFamily="@font/handkide"
-        android:text="@string/compSubmit" />
+    </LinearLayout>
     <LinearLayout
+        android:id="@+id/complete_compare_ll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center|top"
         android:orientation="vertical"
+        android:visibility="gone"
         >
 
         <TextView
+            android:layout_weight="1"
             android:id="@+id/cmp_complete"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="match_parent"
             android:text="test"
+            android:textSize="40dp"
             android:gravity="center|bottom"/>
 
         <TextView
+            android:layout_weight="1"
             android:id="@+id/cmp_score"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:gravity="center"
-            android:text="test"/>
+            android:text=""/>
 
         <Button
+            android:layout_weight="1"
+            android:id="@+id/cmp_finish"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginHorizontal="40dp"
             android:background="@drawable/button_border"
             />

@@ -21,11 +21,12 @@ import java.util.Random;
 
 public class CompareActivity extends AppCompatActivity {
 
-    private TextView compareText,compareLevel;
-    private Button compNumOne, compNumTwo, compSubmitBtn, nextBtn;
+    private TextView compareText,compareLevel,compareScore;
+    private Button compNumOne, compNumTwo, compSubmitBtn, nextBtn,finishBtn;
     private ImageView greatJobImage, wrongAnswerImage;
-    private int number1, number2, ans,maxGame = 1;
+    private int number1, number2, ans,maxGame = 1,score = 0;
     private boolean isBigger;
+    private LinearLayout q_ll, c_ll, r_ll;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +44,9 @@ public class CompareActivity extends AppCompatActivity {
 //        compareLinearLayout.setBackground(bitmapDrawable);
         //completeLinearLayout.setBackground(bitmapDrawable);
 
+        r_ll = findViewById(R.id.compare_answer_ll);
+        c_ll = findViewById(R.id.complete_compare_ll);
+        q_ll = findViewById(R.id.compare_question_ll);
         compareLevel = findViewById(R.id.cmpLevelTxt);
         compareText = findViewById(R.id.caompareText);
         compNumOne = findViewById(R.id.conpNumOne);
@@ -51,6 +55,8 @@ public class CompareActivity extends AppCompatActivity {
         greatJobImage = findViewById(R.id.greatJobImage);
         wrongAnswerImage = findViewById(R.id.wrongAnswerImage);
         nextBtn = findViewById(R.id.nextBtn);
+        finishBtn = findViewById(R.id.cmp_finish);
+        compareScore = findViewById(R.id.cmp_score);
 
         greatJobImage.setVisibility(View.GONE);
         wrongAnswerImage.setVisibility(View.GONE);
@@ -84,16 +90,17 @@ public class CompareActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Hide comparison elements
-                compareText.setVisibility(View.GONE);
-                compNumOne.setVisibility(View.GONE);
-                compNumTwo.setVisibility(View.GONE);
-                compSubmitBtn.setVisibility(View.GONE);
+//                compareText.setVisibility(View.GONE);
+//                compNumOne.setVisibility(View.GONE);
+//                compNumTwo.setVisibility(View.GONE);
+//                compSubmitBtn.setVisibility(View.GONE);
+                q_ll.setVisibility(View.GONE);
 
                 if (ans == 1)
-                    checkAnswer(number1, number2);
+                    checkAnswer(number1, number2,isBigger);
                 else
-                    checkAnswer(number2, number1);
-                // Show result image
+                    checkAnswer(number2, number1,isBigger);
+                 //Show result image
 //                if (greatJobImage.getVisibility() == View.VISIBLE) {
 //                    greatJobImage.setVisibility(View.VISIBLE);
 //                } else if (wrongAnswerImage.getVisibility() == View.VISIBLE) {
@@ -103,36 +110,54 @@ public class CompareActivity extends AppCompatActivity {
                 compNumOne.setBackground(getResources().getDrawable(R.drawable.button_border));
                 compNumTwo.setBackground(getResources().getDrawable(R.drawable.button_border));
                 // Show next button
+                r_ll.setVisibility(View.VISIBLE);
                 nextBtn.setVisibility(View.VISIBLE);
             }
         });
+
 
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 maxGame++;
-                if (maxGame==10){
+                if (maxGame<=2){
 
-                }
-                // Hide result image and next button
+
+                    // Hide result image and next button
                 greatJobImage.setVisibility(View.GONE);
                 wrongAnswerImage.setVisibility(View.GONE);
-                nextBtn.setVisibility(View.GONE);
+//                nextBtn.setVisibility(View.GONE);
+                    r_ll.setVisibility(View.GONE);
 
 
-                // Generate new numbers and show comparison elements
-                generateNumbers();
-                compareText.setVisibility(View.VISIBLE);
-                compNumOne.setVisibility(View.VISIBLE);
-                compNumTwo.setVisibility(View.VISIBLE);
-                compSubmitBtn.setVisibility(View.VISIBLE);
+                    // Generate new numbers and show comparison elements
+                    generateNumbers();
+//                compareText.setVisibility(View.VISIBLE);
+//                compNumOne.setVisibility(View.VISIBLE);
+//                compNumTwo.setVisibility(View.VISIBLE);
+//                compSubmitBtn.setVisibility(View.VISIBLE);
+                    q_ll.setVisibility(View.VISIBLE);
 
-                compareLevel.setText("Level "+maxGame);
+                    compareLevel.setText("Level " + maxGame);
+                }
+                else{
 
+                    compareScore.setText("Score: "+ score+"/"+maxGame);
+                    c_ll.setVisibility(View.VISIBLE);
+                    r_ll.setVisibility(View.GONE);
+                    q_ll.setVisibility(View.GONE);
+                }
             }
 
         });
 
+        finishBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CompareActivity.this,ChooseGames.class);
+                startActivity(intent);
+            }
+        });
         // Handle touch event to hide result image
         findViewById(android.R.id.content).setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -173,22 +198,39 @@ public class CompareActivity extends AppCompatActivity {
             compareText.setText("Please choose the smaller number");
             isBigger = false;
         }
-        compareText.setText("Please choose the bigger number");
+        //compareText.setText("Please choose the bigger number");
     }
 
-    private void checkAnswer(int selectedNumber, int otherNumber) {
+
+    private void checkAnswer(int selectedNumber, int otherNumber, boolean isBigger) {
         boolean correct = true;
-        if (selectedNumber > otherNumber) {
-            correct = true;
-            animateGreatJobImage(greatJobImage,correct);
-            //greatJobImage.setVisibility(View.VISIBLE);
+        if (isBigger) {
+            if (selectedNumber > otherNumber) {
+                correct = true;
+                animateGreatJobImage(greatJobImage,correct);
+                //greatJobImage.setVisibility(View.VISIBLE);
+                score++;
 
-        } else {
-            correct = false;
-            animateGreatJobImage(wrongAnswerImage,correct);
-            //wrongAnswerImage.setVisibility(View.VISIBLE);
-
+            } else {
+                correct = false;
+                animateGreatJobImage(wrongAnswerImage,correct);
+                //wrongAnswerImage.setVisibility(View.VISIBLE);
+            }
         }
+        else{
+            if (selectedNumber < otherNumber) {
+                correct = true;
+                animateGreatJobImage(greatJobImage,correct);
+                //greatJobImage.setVisibility(View.VISIBLE);
+                score++;
+
+            } else {
+                correct = false;
+                animateGreatJobImage(wrongAnswerImage,correct);
+                //wrongAnswerImage.setVisibility(View.VISIBLE);
+            }
+        }
+
     }
 
     private void animateGreatJobImage(ImageView iv,boolean correct) {
@@ -215,4 +257,7 @@ public class CompareActivity extends AppCompatActivity {
         iv.startAnimation(scaleAnimation);
         //iv.setVisibility(View.GONE);
     }
+//    private void printResult(){
+//        compareScore.setText("Score: " + score);
+//    }
 }

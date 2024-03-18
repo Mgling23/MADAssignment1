@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.DragEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -23,7 +24,10 @@ import java.util.Set;
 public class OrderActivity extends AppCompatActivity {
 
     TextView num1, num2, num3, ans1, ans2, ans3;
+    TextView[] ans = new TextView[3];
     private int number1,number2,number3;
+    LinearLayout q_ll,a_ll,c_ll;
+    Button nextBtn;
 
 
     @Override
@@ -31,10 +35,18 @@ public class OrderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order);
 
+        a_ll = findViewById(R.id.order_answer_ll);
+        q_ll = findViewById(R.id.order_question_ll);
+
+        nextBtn = findViewById(R.id.order_nextBtn);
         num1 = (TextView) findViewById(R.id.o_num1);
         num2 = (TextView) findViewById(R.id.o_num2);
         num3 = (TextView) findViewById(R.id.o_num3);
 
+
+        ans[0] = findViewById(R.id.o_ans1);
+        ans[1] = findViewById(R.id.o_ans2);
+        ans[2] = findViewById(R.id.o_ans3);
         ans1 = findViewById(R.id.o_ans1);
         ans2 = findViewById(R.id.o_ans2);
         ans3 = findViewById(R.id.o_ans3);
@@ -49,6 +61,7 @@ public class OrderActivity extends AppCompatActivity {
         orderLinearLayout.setBackground(bitmapDrawable);
 
 
+        nextBtn.setOnClickListener(onClickListener_next);
 
         num1.setOnTouchListener(touchListener);
         num2.setOnTouchListener(touchListener);
@@ -66,7 +79,15 @@ public class OrderActivity extends AppCompatActivity {
         generateNumbers();
     }
 
-
+    View.OnClickListener onClickListener_next = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            q_ll.setVisibility(View.VISIBLE);
+            a_ll.setVisibility(View.GONE);
+            generateNumbers();
+            clearAnswer();
+        }
+    };
 
     View.OnTouchListener touchListener = new View.OnTouchListener() {
         @Override
@@ -136,6 +157,8 @@ public class OrderActivity extends AppCompatActivity {
             return true;
         }
     };
+
+
     private void generateNumbers() {
         Random random = new Random();
         Set<Integer> numbers = new HashSet<>();
@@ -155,6 +178,14 @@ public class OrderActivity extends AppCompatActivity {
 
     }
 
+    private void clearAnswer(){
+        for(int i=0;i<3;i++){
+            ans[i].setBackground(getDrawable(R.drawable.order_answer));
+            ans[i].setText("");
+        }
+        //ans1.setBackground(getDrawable(R.drawable.order_answer));
+
+    }
     private void checkAnswer(){
         try {
             int answer1 = Integer.parseInt(ans1.getText().toString());
@@ -163,6 +194,9 @@ public class OrderActivity extends AppCompatActivity {
 
             if (answer1 < answer2 && answer2 < answer3) {
                 // Correct answer logic
+
+                q_ll.setVisibility(View.GONE);
+                a_ll.setVisibility(View.VISIBLE);
             } else {
                 // Incorrect answer logic
             }
