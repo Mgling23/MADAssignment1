@@ -1,6 +1,7 @@
 package my.edu.utar.assignment1;
 
 import android.content.ClipData;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
@@ -27,8 +28,8 @@ public class OrderActivity extends AppCompatActivity {
     TextView[] ans = new TextView[3];
     private int number1, number2, number3;
     LinearLayout q_ll, a_ll, c_ll;
-    int level = 1;
-    Button nextBtn;
+    int level = 0;
+    Button nextBtn,finishBtn;
     Boolean isAscending;
 
 
@@ -39,10 +40,12 @@ public class OrderActivity extends AppCompatActivity {
 
         a_ll = findViewById(R.id.order_answer_ll);
         q_ll = findViewById(R.id.order_question_ll);
+        c_ll = findViewById(R.id.order_complete_ll);
 
         questionText = findViewById(R.id.order_question);
         levelText = findViewById(R.id.order_level);
         nextBtn = findViewById(R.id.order_nextBtn);
+        finishBtn= findViewById(R.id.order_finish);
         num1 = (TextView) findViewById(R.id.o_num1);
         num2 = (TextView) findViewById(R.id.o_num2);
         num3 = (TextView) findViewById(R.id.o_num3);
@@ -66,19 +69,21 @@ public class OrderActivity extends AppCompatActivity {
 
 
         nextBtn.setOnClickListener(onClickListener_next);
+        finishBtn.setOnClickListener(onClickListener_finish);
+
 
         num1.setOnTouchListener(touchListener);
         num2.setOnTouchListener(touchListener);
         num3.setOnTouchListener(touchListener);
 
 
-//        num1.setOnLongClickListener(longClickListener);
-//        num2.setOnLongClickListener(longClickListener);
-//
-//        num3.setOnLongClickListener(longClickListener);
-        ans1.setOnDragListener(dragListener);
-        ans2.setOnDragListener(dragListener);
-        ans3.setOnDragListener(dragListener);
+
+        for(int i =0;i<3;i++){
+            ans[i].setOnDragListener(dragListener);
+        }
+//        ans1.setOnDragListener(dragListener);
+//        ans2.setOnDragListener(dragListener);
+//        ans3.setOnDragListener(dragListener);
 
         levelText.setText("Level " + level);
         generateNumbers();
@@ -87,10 +92,16 @@ public class OrderActivity extends AppCompatActivity {
     View.OnClickListener onClickListener_next = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            q_ll.setVisibility(View.VISIBLE);
-            a_ll.setVisibility(View.GONE);
-            generateNumbers();
-            clearAnswer();
+            if(level<10){
+                q_ll.setVisibility(View.VISIBLE);
+                a_ll.setVisibility(View.GONE);
+                generateNumbers();
+                clearAnswer();
+            }
+            else{
+                c_ll.setVisibility(View.VISIBLE);
+                a_ll.setVisibility(View.GONE);
+            }
         }
     };
 
@@ -106,15 +117,14 @@ public class OrderActivity extends AppCompatActivity {
             return false;
         }
     };
-//    View.OnLongClickListener longClickListener = new View.OnLongClickListener() {
-//        @Override
-//        public boolean onLongClick(View v) {
-//            ClipData data = ClipData.newPlainText("", "");
-//            View.DragShadowBuilder myShadowBuilder = new View.DragShadowBuilder(v);
-//            v.startDrag(data, myShadowBuilder, v, 0);
-//            return true;
-//        }
-//    };
+
+    View.OnClickListener onClickListener_finish = new View.OnClickListener(){
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent(OrderActivity.this,ChooseGames.class);
+        startActivity(intent);
+    }
+};
 
     View.OnDragListener dragListener = new View.OnDragListener() {
         @Override
@@ -127,29 +137,16 @@ public class OrderActivity extends AppCompatActivity {
                     v.setBackground(getDrawable(R.drawable.stars));
                     final View view = (View) event.getLocalState();
 
-//                    if (view.getId() == R.id.o_num1) {
-//                        tv.setText("Num1 is being dragged");
-//                    }
-//                    else if (view.getId() == R.id.o_num2){
-//                        tv.setText("Num2 is being dragged");
-//                    } else if (view.getId() == R.id.o_num3){
-//                        tv.setText("Num3 is being dragged");
-//                    }
-
                     break;
                 case DragEvent.ACTION_DRAG_EXITED:
                     v.setBackground(getDrawable(R.drawable.order_answer));
-
                     tv.setText("");
                     break;
                 case DragEvent.ACTION_DROP:
                     final View view1 = (View) event.getLocalState();
 
                     if (view1.getId() == R.id.o_num1) {
-
-
                         tv.setText(num1.getText());
-
                     } else if (view1.getId() == R.id.o_num2) {
                         tv.setText(num2.getText());
                     } else if (view1.getId() == R.id.o_num3) {

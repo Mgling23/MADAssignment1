@@ -41,8 +41,8 @@ public class ChooseGames extends AppCompatActivity {
                 intent = new Intent(ChooseGames.this, OrderActivity.class);
                 startActivity(intent);
             }
-            if(btn.getId() == R.id.choCompareBtn) {
-                intent = new Intent(ChooseGames.this,CompareActivity.class);
+            if(btn.getId() == R.id.choComposeBtn) {
+                intent = new Intent(ChooseGames.this, ComposeActivity.class);
                 startActivity(intent);
             }
             if(btn.getId() == R.id.choBackBtn) {

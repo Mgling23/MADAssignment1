@@ -11,4 +11,6 @@
     <string name="game1">Compare Number</string>
     <string name="game2">Number Order</string>
     <string name="game3">Composing Number</string>
+    <string name="compose_plus">+</string>
+    <string name="compose_equal">=</string>
 </resources>

@@ -17,9 +17,9 @@
             android:id="@+id/order_level"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Level"
             android:gravity="center"
-            android:textColor="@color/white"/>
+            android:text="Level"
+            android:textColor="@color/white" />
 
         <TextView
             android:id="@+id/order_instruction"
@@ -94,7 +94,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
             android:gravity="center"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -147,16 +147,15 @@
         android:id="@+id/order_answer_ll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:gravity="center"
-        android:visibility="gone"
-        >
+        android:orientation="vertical"
+        android:visibility="gone">
+
         <ImageView
             android:id="@+id/greatJobImage_order"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/greatjob"
-            />
+            android:src="@drawable/greatjob" />
 
         <Button
             android:id="@+id/order_nextBtn"
@@ -164,8 +163,46 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:background="@drawable/button_border"
-            android:text="Next"
-            />
+            android:text="Next" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/order_complete_ll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/order_complete"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="20dp"
+            android:fontFamily="@font/amazingkids"
+            android:gravity="center|bottom"
+            android:text="Finish"
+            android:layout_weight="1"
+            android:textColor="#F0FFB4"
+            android:textSize="60dp" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center|top"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+
+            <Button
+                android:id="@+id/order_finish"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="40dp"
+                android:background="@drawable/button_border"
+                android:text="Back" />
+        </LinearLayout>
 
     </LinearLayout>
 </LinearLayout>

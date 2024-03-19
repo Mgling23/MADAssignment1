@@ -25,6 +25,7 @@
         android:layout_marginBottom="20dp"
         android:layout_marginHorizontal="70dp"
         android:layout_height="wrap_content"
+        android:textSize="16dp"
         android:background="@drawable/button_border"
         android:padding="20px"
         android:text="@string/game1"
@@ -37,6 +38,8 @@
         android:id="@+id/choOrderBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textSize="16dp"
+
         android:background="@drawable/button_border"
         android:text="@string/game2"
         android:fontFamily="@font/handkide"
@@ -50,6 +53,8 @@
         android:layout_height="wrap_content"
         android:background="@drawable/button_border"
         android:text="@string/game3"
+        android:textSize="16dp"
+
         android:fontFamily="@font/handkide"
         />
 
@@ -61,6 +66,8 @@
         android:layout_height="wrap_content"
         android:background="@drawable/button_border"
         android:text="Button"
+        android:textSize="16dp"
+
         android:fontFamily="@font/handkide"
         />
 </LinearLayout>

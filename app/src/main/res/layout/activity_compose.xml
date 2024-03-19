@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/compose_ll">
+
+
+
+    <LinearLayout
+        android:id="@+id/compose_question_ll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <TextView
+            android:id="@+id/compose_level"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center|bottom"
+            android:orientation="horizontal"
+            android:padding="20dp">
+
+            <TextView
+                android:id="@+id/compose_ans1"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:background="@drawable/order_num"
+                android:gravity="center"
+                android:fontFamily="@font/handkide"
+                android:text="" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:textColor="@color/white"
+                android:text="@string/compose_plus" />
+
+
+            <TextView
+                android:id="@+id/compose_ans2"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:background="@drawable/order_num"
+                android:fontFamily="@font/handkide"
+                android:gravity="center"
+                android:text="" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:text="@string/compose_equal"
+                android:textColor="@color/white"/>
+
+            <TextView
+                android:id="@+id/compose_sum"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:text=""
+                android:fontFamily="@font/handkide"
+                android:background="@drawable/order_num"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center|top"
+            android:fontFamily="@font/handkide"
+
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/compose_num3"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_margin="20dp"
+                    android:background="@drawable/compose_num"
+                    android:gravity="center"
+                    android:text="" />
+
+                <TextView
+                    android:id="@+id/compose_num4"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_margin="20dp"
+                    android:background="@drawable/compose_num"
+                    android:gravity="center"
+                    android:text="" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/compose_num1"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_margin="20dp"
+                    android:background="@drawable/compose_num"
+                    android:gravity="center"
+                    android:text="TextView" />
+
+                <TextView
+                    android:id="@+id/compose_num2"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_margin="20dp"
+                    android:background="@drawable/compose_num"
+                    android:gravity="center"
+                    android:text="TextView" />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center|top"
+            android:orientation="vertical">
+
+
+            <Button
+                android:id="@+id/compose_submit_btn"
+                android:layout_margin="30dp"
+                android:paddingHorizontal="30dp"
+                android:text="Submit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_border"/>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/compose_answer_ll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="gone"
+        >
+        <ImageView
+            android:id="@+id/greatJobImage_compose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/greatjob"
+            />
+
+        <Button
+            android:id="@+id/compose_nextBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:background="@drawable/button_border"
+            android:text="Next"
+            />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/compose_complete_ll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="gone"
+        >
+
+        <TextView
+            android:layout_weight="1"
+            android:id="@+id/compose_complete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Finish"
+            android:textSize="60dp"
+            android:textColor="#F0FFB4"
+            android:gravity="center|bottom"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center|top"
+            android:orientation="vertical">
+
+
+
+        <Button
+            android:id="@+id/compose_finish"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="40dp"
+            android:layout_marginTop="30dp"
+            android:padding="20dp"
+            android:text="Back"
+            android:background="@drawable/button_border"
+            />
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>

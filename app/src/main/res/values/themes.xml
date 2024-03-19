@@ -4,6 +4,8 @@
         <!-- Customize your light theme here. -->
         <item name="colorButtonNormal">@color/btn_origin</item>
         <item name="buttonBarStyle">@color/btn_selected</item>
+        <item name="android:fontFamily">@font/handkide</item>
+        <item name="android:textSize">20dp</item>
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 

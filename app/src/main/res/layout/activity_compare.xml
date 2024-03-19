@@ -139,11 +139,13 @@
             android:layout_height="match_parent"
             android:text="test"
             android:textSize="40dp"
+            android:textColor="@color/white"
             android:gravity="center|bottom"/>
 
         <TextView
             android:layout_weight="1"
             android:id="@+id/cmp_score"
+            android:textColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
