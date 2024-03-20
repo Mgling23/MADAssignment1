@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,9 +28,10 @@ public class ComposeActivity extends AppCompatActivity {
     int level = 0, correct = 0;
     TextView num_sum, level_text;
     TextView[] num = new TextView[6], ans = new TextView[2];
-    LinearLayout q_ll, a_ll, c_ll;
+    LinearLayout q_ll, a_ll, c_ll,i_ll;
     boolean q1f = false, q2f = false;
-    Button submitBtn, nextBtn, finish_btn;
+    Button submitBtn, nextBtn, finish_btn, instructionBtn, instructionFBtn;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,23 +43,29 @@ public class ComposeActivity extends AppCompatActivity {
         q_ll = findViewById(R.id.compose_question_ll);
         a_ll = findViewById(R.id.compose_answer_ll);
         c_ll = findViewById(R.id.compose_complete_ll);
+        i_ll = findViewById(R.id.compose_instruction_ll);
+
         submitBtn = findViewById(R.id.compose_submit_btn);
         nextBtn = findViewById(R.id.compose_nextBtn);
         finish_btn = findViewById(R.id.compose_finish);
         level_text = findViewById(R.id.compose_level);
+
+        instructionBtn = findViewById(R.id.compose_instruction_btn);
+        instructionFBtn = findViewById(R.id.compose_instruction_f_btn);
+
         num[0] = findViewById(R.id.compose_num1);
         num[1] = findViewById(R.id.compose_num2);
         num[2] = findViewById(R.id.compose_num3);
         num[3] = findViewById(R.id.compose_num4);
-        //num[4] = findViewById(R.id.compose_num5);
-        //num[5] = findViewById(R.id.compose_num6);
 
         ans[0] = findViewById(R.id.compose_ans1);
         ans[1] = findViewById(R.id.compose_ans2);
 
         num_sum = findViewById(R.id.compose_sum);
 
-        generateNumber();
+
+        generateNumber();// Call function to generate question
+
         for (int i = 0; i < 4; i++) {
             num[i].setOnTouchListener(touchListener);
         }
@@ -71,7 +79,7 @@ public class ComposeActivity extends AppCompatActivity {
         nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (level < 1) {
+                if (level < 10) {
                     generateNumber();
                     q_ll.setVisibility(View.VISIBLE);
                     a_ll.setVisibility(View.GONE);
@@ -81,6 +89,8 @@ public class ComposeActivity extends AppCompatActivity {
                 }
             }
         });
+
+        // Back to choose game page
         finish_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,6 +98,8 @@ public class ComposeActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        // call function to check answer
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,8 +107,27 @@ public class ComposeActivity extends AppCompatActivity {
 
             }
         });
+
+        //Show tutorial
+        instructionBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                i_ll.setVisibility(View.VISIBLE);
+                q_ll.setVisibility(View.GONE);
+            }
+        });
+
+        // Close tutorial
+        instructionFBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                q_ll.setVisibility(View.VISIBLE);
+                i_ll.setVisibility(View.GONE);
+            }
+        });
     }
 
+    // Handle the drop action
     View.OnDragListener onDragListener = new View.OnDragListener() {
         @Override
         public boolean onDrag(View v, DragEvent event) {
@@ -106,11 +137,10 @@ public class ComposeActivity extends AppCompatActivity {
             switch (dragEvent) {
                 case DragEvent.ACTION_DRAG_ENTERED:
                     final View view = (View) event.getLocalState();
-
                     break;
                 case DragEvent.ACTION_DRAG_EXITED:
                     break;
-                case DragEvent.ACTION_DROP:
+                case DragEvent.ACTION_DROP: //if the item drop place the item here
                     final View view1 = (View) event.getLocalState();
                     int answer = checkNumText(view1);
                     if (v.getId() == ans[0].getId())
@@ -120,15 +150,14 @@ public class ComposeActivity extends AppCompatActivity {
                     if (checkDuplicate(answer)) {
                         tv.setText(String.valueOf(num[answer].getText()));
                     }
-                    //checkAnswer();
                     break;
-
             }
             return true;
         }
     };
 
 
+    // Ontouch listener to let the item draggable
     View.OnTouchListener touchListener = new View.OnTouchListener() {
         @Override
         public boolean onTouch(View v, MotionEvent event) {
@@ -142,6 +171,8 @@ public class ComposeActivity extends AppCompatActivity {
         }
     };
 
+
+    //Function to generate new question with random non duplicate number
     private void generateNumber() {
         int q1, q2;
         level++;
@@ -177,6 +208,7 @@ public class ComposeActivity extends AppCompatActivity {
 
     }
 
+    // check which number is dragged
     private int checkNumText(View v) {
         for (int i = 0; i < 4; i++) {
             if (v.getId() == num[i].getId())
@@ -186,6 +218,8 @@ public class ComposeActivity extends AppCompatActivity {
         return 5;
     }
 
+
+    // Function to check if the answer field got duplicate number
     private boolean checkDuplicate(int answer) {
         if (ans[0].getText() == num[answer].getText() || ans[1].getText() == num[answer].getText())
             return false;
@@ -193,6 +227,7 @@ public class ComposeActivity extends AppCompatActivity {
             return true;
     }
 
+    // Function to set background of the layout
     public void setBackground_ll(LinearLayout ll) {
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inSampleSize = 3;
@@ -202,6 +237,8 @@ public class ComposeActivity extends AppCompatActivity {
         ll.setBackground(bitmapDrawable);
     }
 
+
+    // Function to check answer
     public void checkAnswer() {
 
         if (q1f && q2f) {
@@ -213,6 +250,9 @@ public class ComposeActivity extends AppCompatActivity {
                 a_ll.setVisibility(View.VISIBLE);
                 correct++;
             } else {
+                Toast toast = Toast.makeText(this, "Wrong answer!", Toast.LENGTH_SHORT);
+
+                toast.show();
             }
         }
     }

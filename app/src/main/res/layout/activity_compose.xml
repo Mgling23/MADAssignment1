@@ -12,22 +12,35 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:gravity="center"
+        android:padding="10dp"
         android:visibility="visible">
-
+        <Button
+            android:id="@+id/compose_instruction_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/how_to_play"
+            android:background="@drawable/button_border"
+            android:textSize="15dp"
+            android:paddingHorizontal="10dp"/>
         <TextView
             android:id="@+id/compose_level"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:textSize="20dp"
+            android:layout_margin="10dp"
+            android:textColor="@color/white"
             android:text="" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center|bottom"
+            android:layout_height="wrap_content"
+            android:gravity="center|top"
             android:orientation="horizontal"
-            android:padding="20dp">
+            android:padding="20dp"
+            android:background="@drawable/compose_question"
+            >
 
             <TextView
                 android:id="@+id/compose_ans1"
@@ -76,9 +89,8 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_weight="1"
             android:gravity="center|top"
             android:fontFamily="@font/handkide"
 
@@ -142,7 +154,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center|top"
             android:orientation="vertical">
@@ -222,6 +234,31 @@
             android:background="@drawable/button_border"
             />
         </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/compose_instruction_ll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone"
+        >
+
+        <pl.droidsonroids.gif.GifImageView
+            android:padding="20dp"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/compose_ins"
+            android:background="@drawable/compose_question"/>
+
+        <Button
+            android:id="@+id/compose_instruction_f_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_border"
+            android:text="back"
+            android:layout_margin="20dp"/>
 
     </LinearLayout>
 </LinearLayout>

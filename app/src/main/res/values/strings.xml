@@ -1,16 +1,17 @@
 <resources>
-    <string name="app_name">Assignment1</string>
+    <string name="app_name">Lets Math</string>
     <string name="compareTxt">Please select the bigger number:</string>
     <string name="homePlay">Play Games</string>
     <string name="homeQuit">Quit</string>
-    <string name="homeText">Math Games</string>
+    <string name="homeText">Lets Math</string>
     <string name="compNum1">4</string>
     <string name="compNum2">7</string>
     <string name="compSubmit">Submit</string>
     <string name="compLvl">Level</string>
     <string name="game1">Compare Number</string>
-    <string name="game2">Number Order</string>
+    <string name="game2">Ordering Number</string>
     <string name="game3">Composing Number</string>
     <string name="compose_plus">+</string>
     <string name="compose_equal">=</string>
+    <string name="how_to_play">How to play</string>
 </resources>

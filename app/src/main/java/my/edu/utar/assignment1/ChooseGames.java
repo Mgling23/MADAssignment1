@@ -25,43 +25,46 @@ public class ChooseGames extends AppCompatActivity {
 
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inSampleSize = 2;
-        Bitmap bg_pic = BitmapFactory.decodeResource(getResources(),R.drawable.all_bg3,options);
+        Bitmap bg_pic = BitmapFactory.decodeResource(getResources(), R.drawable.all_bg3, options);
 
-        BitmapDrawable bitmapDrawable = new BitmapDrawable(getResources(),bg_pic);
+        BitmapDrawable bitmapDrawable = new BitmapDrawable(getResources(), bg_pic);
         orderLinearLayout.setBackground(bitmapDrawable);
-        buttonListener = v -> {
-            Intent intent;
-
-            Button btn = (Button) v;
-            if(btn.getId() == R.id.choCompareBtn) {
-                intent = new Intent(ChooseGames.this,CompareActivity.class);
-                startActivity(intent);
-            }
-            if(btn.getId() == R.id.choOrderBtn) {
-                intent = new Intent(ChooseGames.this, OrderActivity.class);
-                startActivity(intent);
-            }
-            if(btn.getId() == R.id.choComposeBtn) {
-                intent = new Intent(ChooseGames.this, ComposeActivity.class);
-                startActivity(intent);
-            }
-            if(btn.getId() == R.id.choBackBtn) {
-                intent = new Intent(ChooseGames.this,MainActivity.class);
-                startActivity(intent);
-            }
-            if(btn.getId() == R.id.homeQuitBt)
-                finish();
-        };
 
         Button choCompareBtn = findViewById(R.id.choCompareBtn);
         Button choOrderBtn = findViewById(R.id.choOrderBtn);
         Button choComposeBtn = findViewById(R.id.choComposeBtn);
+        Button choBackBtn = findViewById(R.id.choBackBtn);
 
-
-
+        choBackBtn.setOnClickListener(buttonListener);
         choComposeBtn.setOnClickListener(buttonListener);
         choOrderBtn.setOnClickListener(buttonListener);
         choCompareBtn.setOnClickListener(buttonListener);
+
+        buttonListener = v -> {
+            Intent intent;
+
+            Button btn = (Button) v;
+            if (btn.getId() == R.id.choCompareBtn) {
+                intent = new Intent(ChooseGames.this, CompareActivity.class);
+                startActivity(intent);
+            }
+            if (btn.getId() == R.id.choOrderBtn) {
+                intent = new Intent(ChooseGames.this, OrderActivity.class);
+                startActivity(intent);
+            }
+            if (btn.getId() == R.id.choComposeBtn) {
+                intent = new Intent(ChooseGames.this, ComposeActivity.class);
+                startActivity(intent);
+            }
+            if (btn.getId() == R.id.choBackBtn) {
+                intent = new Intent(ChooseGames.this, MainActivity.class);
+                startActivity(intent);
+            }
+            if (btn.getId() == R.id.homeQuitBt)
+                finish();
+        };
+
+
 
     }
 }

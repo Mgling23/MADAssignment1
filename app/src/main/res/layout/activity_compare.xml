@@ -7,80 +7,93 @@
     android:gravity="center|top"
     android:orientation="vertical"
     tools:context=".CompareActivity">
+
     <LinearLayout
         android:id="@+id/compare_question_ll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:gravity="center|top"
-        >
-    <TextView
-        android:id="@+id/cmpLevelTxt"
-        android:layout_width="match_parent"
-        android:layout_height="49dp"
-        android:gravity="center"
-        android:text="@string/compLvl"
-        android:textAlignment="center"
-        android:textColor="@color/white" />
-
-    <TextView
-        android:id="@+id/caompareText"
-        android:layout_width="match_parent"
-        android:layout_height="203dp"
-        android:layout_margin="30dp"
-        android:alpha="0.7"
-        android:background="@drawable/compare_q"
-        android:gravity="center"
+        android:orientation="vertical"
         android:padding="10dp"
-        android:text="@string/compareTxt"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="20dp" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="112dp"
-        android:clipToPadding="false"
-        android:orientation="horizontal"
-        android:padding="30px">
-
-        <Space
-            android:layout_width="52dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
+        android:visibility="visible">
 
         <Button
-            android:id="@+id/conpNumOne"
+            android:id="@+id/compare_instruction_btn"
             android:layout_width="wrap_content"
-            android:layout_height="74dp"
-            android:layout_weight="1"
-            android:background="@drawable/button_border"
-            android:fontFamily="@font/handkide"
-            android:text="@string/compNum1"
-            android:textSize="20dp" />
-
-        <Space
-            android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
-        <Button
-            android:id="@+id/compNumTwo"
-            android:layout_width="wrap_content"
-            android:layout_height="70dp"
-            android:layout_weight="1"
             android:background="@drawable/button_border"
-            android:fontFamily="@font/handkide"
-            android:text="@string/compNum2"
-            android:textSize="20dp" />
+            android:paddingHorizontal="10dp"
+            android:text="@string/how_to_play"
+            android:textSize="15dp" />
 
-        <Space
-            android:layout_width="43dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
+        <TextView
+            android:id="@+id/cmpLevelTxt"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:gravity="center"
+            android:text="@string/compLvl"
+            android:textAlignment="center"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/caompareText"
+            android:layout_width="match_parent"
+            android:layout_height="203dp"
+            android:layout_margin="30dp"
+            android:alpha="0.7"
+            android:background="@drawable/compare_q"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="@string/compareTxt"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="30dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="112dp"
+            android:clipToPadding="false"
+            android:orientation="horizontal"
+            android:padding="30px">
+
+            <Space
+                android:layout_width="52dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/conpNumOne"
+                android:layout_width="wrap_content"
+                android:layout_height="74dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_border"
+                android:fontFamily="@font/handkide"
+                android:text="@string/compNum1"
+                android:textSize="20dp" />
+
+            <Space
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/compNumTwo"
+                android:layout_width="wrap_content"
+                android:layout_height="70dp"
+                android:layout_weight="1"
+                android:background="@drawable/button_border"
+                android:fontFamily="@font/handkide"
+                android:text="@string/compNum2"
+                android:textSize="20dp" />
+
+            <Space
+                android:layout_width="43dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
 
 
-    </LinearLayout>
+        </LinearLayout>
+
         <Button
             android:id="@+id/compSubmitBtn"
             android:layout_width="144dp"
@@ -94,71 +107,104 @@
         android:id="@+id/compare_answer_ll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:gravity="center"
-        >
-    <ImageView
-        android:id="@+id/greatJobImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/greatjob"
-         />
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/greatJobImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/greatjob" />
 
 
+        <ImageView
+            android:id="@+id/wrongAnswerImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/wrong_answer"
+            android:visibility="gone" />
 
-    <ImageView
-        android:id="@+id/wrongAnswerImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/wrong_answer"
-        android:visibility="gone"
-         />
+        <Button
+            android:id="@+id/nextBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:background="@drawable/button_border"
+            android:text="Next" />
 
-    <Button
-        android:id="@+id/nextBtn"
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/complete_compare_ll"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:background="@drawable/button_border"
-        android:text="Next"
-        />
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/cmp_complete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:layout_weight="1"
+            android:gravity="center|bottom"
+            android:text="Finish"
+            android:textColor="@color/white"
+            android:textSize="60dp" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center|top"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/cmp_score"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="20dp"
+                android:gravity="center"
+                android:text=""
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/cmp_finish"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="40dp"
+                android:background="@drawable/button_border"
+                android:padding="20dp"
+                android:text="Back" />
+        </LinearLayout>
 
     </LinearLayout>
     <LinearLayout
-        android:id="@+id/complete_compare_ll"
+        android:id="@+id/compare_instruction_ll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:visibility="gone"
         >
 
-        <TextView
+        <pl.droidsonroids.gif.GifImageView
+            android:padding="20dp"
             android:layout_weight="1"
-            android:id="@+id/cmp_complete"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="test"
-            android:textSize="40dp"
-            android:textColor="@color/white"
-            android:gravity="center|bottom"/>
-
-        <TextView
-            android:layout_weight="1"
-            android:id="@+id/cmp_score"
-            android:textColor="@color/white"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text=""/>
+            android:layout_height="wrap_content"
+            android:src="@drawable/instruction_compare"
+            android:background="@drawable/compose_question"/>
 
         <Button
-            android:layout_weight="1"
-            android:id="@+id/cmp_finish"
+            android:id="@+id/compare_instruction_f_btn"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginHorizontal="40dp"
+            android:layout_height="wrap_content"
             android:background="@drawable/button_border"
-            />
-    </LinearLayout>
+            android:text="back"
+            android:layout_margin="20dp"/>
 
+    </LinearLayout>
 </LinearLayout>

@@ -8,29 +8,34 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:padding="10dp"
         android:id="@+id/order_question_ll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:gravity="center"
         android:orientation="vertical">
-
+        <Button
+            android:id="@+id/order_instruction_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/how_to_play"
+            android:background="@drawable/button_border"
+            android:textSize="15sp"
+            android:paddingHorizontal="10dp"/>
         <TextView
             android:id="@+id/order_level"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:layout_margin="10dp"
             android:text="Level"
+            android:textSize="25dp"
             android:textColor="@color/white" />
 
-        <TextView
-            android:id="@+id/order_instruction"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-
-            />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="347dp">
+            android:layout_height="278dp">
 
             <TextView
                 android:id="@+id/o_num1"
@@ -148,6 +153,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
+        android:layout_margin="20dp"
         android:orientation="vertical"
         android:visibility="gone">
 
@@ -203,6 +209,31 @@
                 android:background="@drawable/button_border"
                 android:text="Back" />
         </LinearLayout>
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/order_instruction_ll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone"
+        >
+
+        <pl.droidsonroids.gif.GifImageView
+            android:padding="20dp"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/order_ins"
+            android:background="@drawable/compose_question"/>
+
+        <Button
+            android:id="@+id/order_instruction_f_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_border"
+            android:text="back"
+            android:layout_margin="20dp"/>
 
     </LinearLayout>
 </LinearLayout>
