@@ -64,7 +64,10 @@ public class ChooseGames extends AppCompatActivity {
                 finish();
         };
 
-
+        choBackBtn.setOnClickListener(buttonListener);
+        choComposeBtn.setOnClickListener(buttonListener);
+        choOrderBtn.setOnClickListener(buttonListener);
+        choCompareBtn.setOnClickListener(buttonListener);
 
     }
 }
